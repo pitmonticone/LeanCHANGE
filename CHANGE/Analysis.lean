@@ -2,7 +2,7 @@ import Mathlib.Tactic
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 import Mathlib.Analysis.Calculus.Deriv.Prod
 import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.SpecialFunctions.Integrals
+import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.Analysis.Convolution
 import Mathlib.Data.Real.Irrational
 import Mathlib.MeasureTheory.Function.Jacobian
@@ -140,7 +140,7 @@ The intermediate value theorem states that if `f` is continuous and
 `f a ≤ y ≤ f b`, then there is an `x ∈ [a, b]` with `f(x) = y`.
 -/
 
-example {f : ℝ → ℝ} {a b y : ℝ} (hab : a ≤ b)
+example {f : ℝ → ℝ} {a b _y : ℝ} (hab : a ≤ b)
     (hf : ContinuousOn f (Icc a b)) :
     Icc (f a) (f b) ⊆ f '' Icc a b :=
   intermediate_value_Icc hab hf
@@ -218,7 +218,7 @@ normed vector space. -/
 example (x : ℝ) : deriv (fun x ↦ ((Real.cos x) ^ 2, (Real.sin x) ^ 2)) x =
     (- 2 * Real.cos x * Real.sin x, 2 * Real.sin x * Real.cos x) := by {
   apply HasDerivAt.deriv
-  refine HasDerivAt.prod ?h.hf₁ ?h.hf₂
+  refine HasDerivAt.prodMk ?h.hf₁ ?h.hf₂
   · convert HasDerivAt.pow _ _ using 1
     rotate_right
     exact hasDerivAt_cos x
@@ -234,8 +234,6 @@ example (x : ℝ) : deriv (fun x ↦ ((Real.cos x) ^ 2, (Real.sin x) ^ 2)) x =
     simp
     exact hasDerivAt_sin x
   }
-
-
 
 /- If the domain is a normed space we can define the
 total derivative, which will be a continuous linear map. -/
@@ -420,7 +418,7 @@ example {s : ℕ → Set X} (hmeas : ∀ i, MeasurableSet (s i))
     μ (⋃ i, s i) = ∑' i, μ (s i) :=
   μ.m_iUnion hmeas hdis
 
-example (s : Set X) : μ s = ⨅ (t ⊇ s) (h : MeasurableSet t), μ t :=
+example (s : Set X) : μ s = ⨅ (t ⊇ s) (_h : MeasurableSet t), μ t :=
   measure_eq_iInf s
 
 example (s : ℕ → Set X) : μ (⋃ i, s i) ≤ ∑' i, μ (s i) :=
@@ -466,7 +464,7 @@ Use `simp_rw`, `simp only` or `unfold` instead. -/
 example : ∀ᵐ x : ℝ, Irrational x := by {
   simp_rw [Irrational]
   -- unfold Irrational
-  refine Countable.ae_not_mem ?h volume
+  refine Countable.ae_notMem ?h volume
   exact countable_range Rat.cast
   }
 
@@ -500,7 +498,7 @@ example {f g : X → E} (hf : Integrable f μ) (hg : Integrable g μ) :
 * In the following example, we compute the integral of a constant map
 -/
 example {s : Set X} (c : E) :
-    ∫ x in s, c ∂μ = (μ s).toReal • c :=
+    ∫ _x in s, c ∂μ = (μ s).toReal • c :=
   setIntegral_const c
 
 /-

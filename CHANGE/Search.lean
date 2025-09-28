@@ -56,10 +56,10 @@ example {p : Polynomial ℂ} (h : 0 < p.degree) : ∃ x, Polynomial.IsRoot p x :
 -- Example 3: Binary product functor
 
 #check prod.functor -- found via Loogle "CategoryTheory.Functor, CategoryTheory.Limits.HasBinaryProducts"
-#check uncurry -- found via Loogle 'CategoryTheory.Functor, "curry"'
+#check CategoryTheory.Functor.uncurry -- found via Loogle 'CategoryTheory.Functor, "curry"'
 
 noncomputable example {C : Type} [Category C] [HasBinaryProducts C] : C × C ⥤ C :=
-  uncurry.obj prod.functor
+  CategoryTheory.Functor.uncurry.obj prod.functor
 
 -- Example 4: Square of square root of real number is the original number
 

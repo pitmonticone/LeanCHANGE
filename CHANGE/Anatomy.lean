@@ -1,4 +1,4 @@
-import Mathlib.LinearAlgebra.LinearIndependent
+import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
 
 /-
 # Informal statement

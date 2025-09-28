@@ -22,9 +22,8 @@
     },
     "files.exclude": {
         "**/.gitignore": true,
-        "**/.lake": true,
-        "**/LICENSE": true,
         "**/images": true,
+        "**/LICENSE": true
     },
-    "workbench.colorTheme": "Visual Studio Light"
+    // "workbench.colorTheme": "Visual Studio Light"
 }
