@@ -4,7 +4,7 @@ import Mathlib.Analysis.Calculus.Deriv.Prod
 import Mathlib.Analysis.Calculus.Deriv.Pow
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.Analysis.Convolution
-import Mathlib.Data.Real.Irrational
+import Mathlib.RingTheory.Real.Irrational
 import Mathlib.MeasureTheory.Function.Jacobian
 open BigOperators Function Set Real Topology Filter
 open MeasureTheory Interval Convolution ENNReal
